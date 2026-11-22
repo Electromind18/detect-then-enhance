@@ -1,0 +1,175 @@
+import glob, os, shutil
+p = glob.glob("/kaggle/input/**/prepare_codrone.py", recursive=True); print(p)
+src = os.path.dirname([x for x in p if "v10" in x][0] if any("v10" in x for x in p) else p[0]); print("code from:", src)
+os.makedirs("/kaggle/working/rsvqa-gate", exist_ok=True)
+for f in glob.glob(src + "/*.py"): shutil.copy(f, "/kaggle/working/rsvqa-gate/")
+%cd /kaggle/working/rsvqa-gate
+!pip install -q gdown
+!df -h /tmp /kaggle/working | tail -2
+['/kaggle/input/datasets/hamzatauqeer/rsvqa-gate-v7/rsvqa-gate-v10/rsvqa-gate/prepare_codrone.py']
+code from: /kaggle/input/datasets/hamzatauqeer/rsvqa-gate-v7/rsvqa-gate-v10/rsvqa-gate
+/kaggle/working/rsvqa-gate
+overlay         8.0T  5.6T  2.5T  70% /
+/dev/loop2       20G  252K   20G   1% /kaggle/working
+!gdown 1FQ6mUaOr_kATDaH7N2bObD5SRRkV7qJy -O /tmp/codrone.pkg
+!ls -la /tmp/codrone.pkg && file /tmp/codrone.pkg
+!unzip -l /tmp/codrone.pkg 2>/dev/null | tail -3
+!unzip -l /tmp/codrone.pkg 2>/dev/null | grep -m 5 "test/annfile"
+Downloading...
+From (original): https://drive.google.com/uc?id=1FQ6mUaOr_kATDaH7N2bObD5SRRkV7qJy
+From (redirected): https://drive.google.com/uc?id=1FQ6mUaOr_kATDaH7N2bObD5SRRkV7qJy&confirm=t&uuid=fbc3f062-f8bd-4f79-8033-8f1b80736e68
+To: /tmp/codrone.pkg
+-rw-r--r-- 1 root root 7233513058 Oct 23  2025 /tmp/codrone.pkg
+/tmp/codrone.pkg: Zip archive data, at least v1.0 to extract, compression method=store
+   357215  2025-10-22 09:20   CODrone/train/images/day_xintianchengshi_60m_90c_3_frame_4200.jpg
+---------                     -------
+7567632154                     30025 files
+        0  2025-10-22 09:20   CODrone/test/annfile/
+     7067  2025-10-22 09:20   CODrone/test/annfile/day_huanqiucheng_30m_30c_5_frame_450.txt
+     1874  2025-10-22 09:20   CODrone/test/annfile/day_huanqiucheng_60m_90c_frame_6150.txt
+      270  2025-10-22 09:20   CODrone/test/annfile/day_yuemeihu_60m_90c_frame_900.txt
+      271  2025-10-22 09:20   CODrone/test/annfile/night _yangfanpark_100m_30c_2_frame_1200.txt
+s = open("prepare_codrone.py").read()
+old1 = "    night = sorted([r for r in rows if r[1] < a.night_lum], key=lambda r: r[1])\n    day = [r for r in rows if r[1] > a.day_lum]\n"
+new1 = ("    tag = lambda r: os.path.basename(r[0]).lower().replace(' ', '')\n"
+        "    night = [r for r in rows if tag(r).startswith('night')]   # CODrone file names carry day_/night_ tags\n"
+        "    day = [r for r in rows if tag(r).startswith('day')]\n"
+        "    print('by file name -> night:', len(night), '| day:', len(day), '| night lum median:',\n"
+        "          round(float(np.median([r[1] for r in night])), 3) if night else None)\n")
+assert old1 in s, "pattern not found"
+open("prepare_codrone.py", "w").write(s.replace(old1, new1))
+print("patched: night/day now taken from CODrone file names")
+patched: night/day now taken from CODrone file names
+s = open("prepare_codrone.py").read()
+a = '    classes = [c for c, n in allcls.items() if n >= 10]\n'
+b = '            noun = c.replace("-", " ").replace("_", " ")\n'
+assert a in s and b in s, "pattern not found"
+s = s.replace(a, '    classes = [c for c, n in allcls.items() if n >= 10 and c != "ignored"]  # "ignored" is a mask label, not an object\n    print("question classes:", sorted(classes))\n')
+s = s.replace(b, '            noun = {"motor": "motorcycle", "people": "person"}.get(c, c.replace("-", " ").replace("_", " "))\n')
+open("prepare_codrone.py", "w").write(s)
+print("patched: no 'ignored' questions; motor -> motorcycle, people -> person")
+patched: no 'ignored' questions; motor -> motorcycle, people -> person
+!mkdir -p /tmp/codrone_raw && unzip -q -o /tmp/codrone.pkg "CODrone/test/*" -d /tmp/codrone_raw
+!ls /tmp/codrone_raw/CODrone/test/images | wc -l
+!python prepare_codrone.py --root /tmp/codrone_raw --out codrone_v --n_night 150 --n_day 100
+from IPython.display import Image as Show; Show("codrone_v/night_contact_sheet.jpg")
+3002
+split test: 3002 images with annotations
+luminance quantiles 1/5/25/50/75%: [0.049 0.098 0.193 0.465 0.505]
+classes (images containing): {'car': 2723, 'motor': 2003, 'people': 1988, 'truck': 1704, 'ignored': 1253, 'traffic-sign': 1201, 'bus': 656, 'tricycle': 489, 'traffic-light': 473, 'bicycle': 379, 'boat': 157, 'bridge': 104, 'ship': 42}
+question classes: ['bicycle', 'boat', 'bridge', 'bus', 'car', 'motor', 'people', 'ship', 'traffic-light', 'traffic-sign', 'tricycle', 'truck']
+by file name -> night: 1120 | day: 1806 | night lum median: 0.176
+night candidates (lum<0.2): 1120 | day candidates (lum>0.35): 1806
+150 night + 100 day images, 1000 questions (472 yes) -> 5000 VLM runs
+from kaggle_secrets import UserSecretsClient
+import os
+os.environ["HF_TOKEN"] = UserSecretsClient().get_secret("HF_TOKEN")
+from huggingface_hub import login; login(os.environ["HF_TOKEN"]); print("HF login OK")
+Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.
+HF login OK
+import glob, shutil, os
+os.makedirs("phase1", exist_ok=True)
+for f in glob.glob("/kaggle/input/**/rsvlm-gate-phase2/**/phase1/*.jsonl", recursive=True): shutil.copy(f, "phase1/")
+!wc -l phase1/*.jsonl
+n = sum(1 for _ in open("phase1/questions.jsonl")); assert n == 2100, f"wrong phase1 files: {n} questions"
+print("phase1 OK (700 images, 2100 questions)")
+    8400 phase1/features.jsonl
+    2100 phase1/questions.jsonl
+   13650 phase1/results_Qwen2.5-VL-3B-Instruct_s0.jsonl
+   13650 phase1/results_Qwen2.5-VL-3B-Instruct_s1.jsonl
+   13650 phase1/results_Qwen2-VL-2B-Instruct_s0.jsonl
+   13650 phase1/results_Qwen2-VL-2B-Instruct_s1.jsonl
+   65100 total
+phase1 OK (700 images, 2100 questions)
+%%bash
+for M in Qwen/Qwen2.5-VL-3B-Instruct Qwen/Qwen2-VL-2B-Instruct; do
+T=$(basename $M)
+CUDA_VISIBLE_DEVICES=0 python run_vlm.py --data codrone_v --model $M --bs 16 --shard 0 --nshards 2 > cd_${T}_0.txt 2>&1 &
+CUDA_VISIBLE_DEVICES=1 python run_vlm.py --data codrone_v --model $M --bs 16 --shard 1 --nshards 2 > cd_${T}_1.txt 2>&1 &
+wait; done
+tail -n 1 cd_*.txt
+==> cd_Qwen2.5-VL-3B-Instruct_0.txt <==
+shard 0: 2500 runs in 4945s (1978 ms/run)
+==> cd_Qwen2.5-VL-3B-Instruct_1.txt <==
+shard 1: 2500 runs in 4955s (1982 ms/run)
+==> cd_Qwen2-VL-2B-Instruct_0.txt <==
+shard 0: 2500 runs in 3799s (1520 ms/run)
+==> cd_Qwen2-VL-2B-Instruct_1.txt <==
+shard 1: 2500 runs in 3770s (1508 ms/run)
+for m in ["Qwen2.5-VL-3B-Instruct", "Qwen2-VL-2B-Instruct"]:
+    !python transfer_eval.py --src phase1 --tgt codrone_v --model_tag {m}
+%cd /kaggle/working
+!zip -rq rsvlm-gate_night.zip rsvqa-gate -x "rsvqa-gate/*/images/*"
+!ls -la rsvlm-gate_night.zip
+# Transfer report: phase1 -> codrone_v | VLM Qwen2.5-VL-3B-Instruct
+target: questions=1000 images=250 | blank-image acc 52.8% | levels [np.int64(0), np.int64(1)]
+lookup table (source): {'clean': 'gamma', 'haze': 'dehaze', 'lowlight': 'gamma'} | target-best: {'clean': 'none', 'lowlight': 'none'}
+thresholds (source): lum<0.318 -> lowlight, dark>0.371 -> haze
+detector accuracy on target: GBDT 41.2% | thresholds 98.4%
+GBDT confusion (rows true, cols predicted):
+| cond     |   clean |   lowlight |
+|:---------|--------:|-----------:|
+| clean    |     400 |          0 |
+| lowlight |     588 |         12 |
+## Accuracy % on target (image-level 95% CI)
+| policy                                |   clean | haze   |   lowlight |   overall | gain_vs_never       |
+|:--------------------------------------|--------:|:-------|-----------:|----------:|:--------------------|
+| never-enhance                         |    66.8 |        |       72.2 |      70   | nan                 |
+| always-clahe                          |    64.8 |        |       72   |      69.1 | -0.90 [-2.50,+0.60] |
+| always-gamma                          |    66.8 |        |       70.8 |      69.2 | -0.80 [-2.40,+0.70] |
+| always-dehaze                         |    65   |        |       70.7 |      68.4 | -1.60 [-3.10,-0.20] |
+| router: GBDT (fit on source)          |    66.8 |        |       70.8 |      69.2 | -0.80 [-2.40,+0.70] |
+| router: thresholds (fit on source)    |    66.8 |        |       70.8 |      69.2 | -0.80 [-2.40,+0.70] |
+| oracle: true condition + source table |    66.8 |        |       70.8 |      69.2 | -0.80 [-2.40,+0.70] |
+| oracle: true condition + TARGET table |    66.8 |        |       72.2 |      70   | +0.00 [+0.00,+0.00] |
+## Key paired comparisons (router fit on source)
+- router: GBDT (fit on source) vs always-gamma: +0.00 [+0.00,+0.00]
+- router: GBDT (fit on source) vs always-dehaze: +0.80 [-1.00,+2.70]
+- router: thresholds (fit on source) vs always-gamma: +0.00 [+0.00,+0.00]
+- router: thresholds (fit on source) vs always-dehaze: +0.80 [-1.00,+2.70]
+## By question type
+| qtype           |   never-enhance |   always-gamma |   always-dehaze |   router: GBDT (fit on source) |
+|:----------------|----------------:|---------------:|----------------:|-------------------------------:|
+| presence_object |              70 |           69.2 |            68.4 |                           69.2 |
+## By condition and severity
+|                 |   never-enhance |   always-gamma |   always-dehaze |   router: GBDT (fit on source) |
+|:----------------|----------------:|---------------:|----------------:|-------------------------------:|
+| ('lowlight', 1) |            72.2 |           70.8 |            70.7 |                           70.8 |
+# Transfer report: phase1 -> codrone_v | VLM Qwen2-VL-2B-Instruct
+target: questions=1000 images=250 | blank-image acc 52.8% | levels [np.int64(0), np.int64(1)]
+lookup table (source): {'clean': 'none', 'haze': 'dehaze', 'lowlight': 'gamma'} | target-best: {'clean': 'clahe', 'lowlight': 'clahe'}
+thresholds (source): lum<0.318 -> lowlight, dark>0.371 -> haze
+detector accuracy on target: GBDT 41.2% | thresholds 98.4%
+GBDT confusion (rows true, cols predicted):
+| cond     |   clean |   lowlight |
+|:---------|--------:|-----------:|
+| clean    |     400 |          0 |
+| lowlight |     588 |         12 |
+## Accuracy % on target (image-level 95% CI)
+| policy                                |   clean | haze   |   lowlight |   overall | gain_vs_never       |
+|:--------------------------------------|--------:|:-------|-----------:|----------:|:--------------------|
+| never-enhance                         |    66.2 |        |       72   |      69.7 | nan                 |
+| always-clahe                          |    67.5 |        |       74   |      71.4 | +1.70 [+0.40,+3.00] |
+| always-gamma                          |    67   |        |       74   |      71.2 | +1.50 [+0.10,+2.90] |
+| always-dehaze                         |    65.5 |        |       73.5 |      70.3 | +0.60 [-0.50,+1.70] |
+| router: GBDT (fit on source)          |    66.2 |        |       72   |      69.7 | +0.00 [+0.00,+0.00] |
+| router: thresholds (fit on source)    |    66.2 |        |       74   |      70.9 | +1.20 [+0.00,+2.40] |
+| oracle: true condition + source table |    66.2 |        |       74   |      70.9 | +1.20 [+0.00,+2.40] |
+| oracle: true condition + TARGET table |    67.5 |        |       74   |      71.4 | +1.70 [+0.40,+3.00] |
+## Key paired comparisons (router fit on source)
+- router: GBDT (fit on source) vs always-clahe: -1.70 [-3.00,-0.40]
+- router: GBDT (fit on source) vs always-gamma: -1.50 [-2.90,-0.10]
+- router: GBDT (fit on source) vs always-dehaze: -0.60 [-1.70,+0.50]
+- router: thresholds (fit on source) vs always-clahe: -0.50 [-2.00,+0.90]
+- router: thresholds (fit on source) vs always-gamma: -0.30 [-1.00,+0.40]
+- router: thresholds (fit on source) vs always-dehaze: +0.60 [-0.70,+1.90]
+## By question type
+| qtype           |   never-enhance |   always-gamma |   always-dehaze |   router: GBDT (fit on source) |
+|:----------------|----------------:|---------------:|----------------:|-------------------------------:|
+| presence_object |            69.7 |           71.2 |            70.3 |                           69.7 |
+## By condition and severity
+|                 |   never-enhance |   always-gamma |   always-dehaze |   router: GBDT (fit on source) |
+|:----------------|----------------:|---------------:|----------------:|-------------------------------:|
+| ('lowlight', 1) |              72 |             74 |            73.5 |                             72 |
+/kaggle/working
+-rw-r--r-- 1 root root 4063113 Nov 21 22:11 rsvlm-gate_night.zip
