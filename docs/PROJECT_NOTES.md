@@ -145,3 +145,11 @@ JSTARS paper. The task is: <reviewer comments / revision / new experiment>."
 - Lessons from the authors' earlier JSTARS reviews (FireNofire paper): reviewers asked for a public repo with configs,
   seeds and versions; 2024+ literature; visual samples; cross-dataset tests; hardware dependency and edge devices;
   explanations of *why* results differ; concise writing. Expect similar questions here.
+
+### 15. Blind human labels for RRSHID (Nov 22)
+- `src/make_label_sheet.py` built a blind labelling page (50 RRSHID haze-free images, seed 0, 16/16/18 per density,
+  no model answers shown); one author labelled it. Labels: `results/rrshid_v/human_labels/rrshid_human_labels.csv`
+  (102 yes, 66 no, 82 unsure). Scored with `src/human_eval.py` -> `human_eval_report.md` (paper Table VII).
+- 168 questions / 48 images: haze-free 69.0 / 73.8; hazy never 44.6 / 49.4; always dehaze 57.7 / 58.3;
+  router few-shot 57.7 / 58.3 (= always dehaze on these inputs); zero-shot router 54.2 / 54.8.
+  VLM confident haze-free answers agree with human on 83.3% / 87.7% (validates the agreement metric partly).
