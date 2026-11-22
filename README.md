@@ -39,7 +39,6 @@ scripts/                   one script per experiment, plus 06 (all tables from s
 models/                    fitted router: detectors, thresholds, lookup tables, metadata
 results/                   every scored VLM run, questions, image statistics, reports, original Kaggle logs
 figures/                   paper figures and the TikZ source of the pipeline diagram
-paper/                     LaTeX source of the manuscript
 docs/REPRODUCIBILITY.md    software versions, seeds, settings, run times, known differences
 docs/PROJECT_NOTES.md      full project history and context for future revisions
 ```
@@ -51,7 +50,8 @@ docs/PROJECT_NOTES.md      full project history and context for future revisions
 | `src/prepare_rrshid.py`, `prepare_codrone.py` | Real-haze (RRSHID) and real-night (CODrone) test sets |
 | `src/make_versions.py` | Degraded and enhanced versions of every image, with cached statistics |
 | `src/run_vlm.py` | Generation-free scoring from first-token probabilities; resumable; multi-GPU sharding |
-| `src/analyze_pilot.py` | Main study: fixed policies, per-sample gate, router with 5-fold CV, bootstrap |
+| `src/analyze_pilot.py` | Main study: fixed policies, per-sample gate, router with 5-fold CV, help/hurt analysis |
+| `src/main_table_ci.py` | Main-study table with image-level bootstrap intervals, threshold router, cross-VLM table |
 | `src/transfer_eval.py` | Router fitted on UC Merced and applied unchanged to a new set (`--pseudo`, `--extra_det`) |
 | `src/fewshot_rrshid.py` | Labelled RRSHID training pairs for the few-shot detector |
 | `src/export_router.py`, `src/route.py` | Save the router; apply it to any image |
