@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Recompute every table of the paper from the stored runs in results/ (CPU only, a few minutes). No GPU, no images.
 set -euo pipefail; cd "$(dirname "$0")/../src"; R=../results; mkdir -p ../recomputed
+python main_table_ci.py --data $R/phase1 > ../recomputed/main_table_image_level_ci.txt   # Table III
 for T in Qwen2.5-VL-3B-Instruct Qwen2-VL-2B-Instruct; do
   python analyze_pilot.py --data $R/phase1 --model_tag $T                         > ../recomputed/main_$T.txt
   for S in aid_v unseen_v codrone_v; do python transfer_eval.py --src $R/phase1 --tgt $R/$S --model_tag $T > ../recomputed/${S}_$T.txt; done
