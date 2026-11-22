@@ -1,0 +1,251 @@
+qid,img_key,question,human_answer
+rr0059_q0,rr0059,"Is there buildings in this image?",yes
+rr0059_q1,rr0059,"Is there trees in this image?",yes
+rr0059_q2,rr0059,"Is there water in this image?",no
+rr0059_q3,rr0059,"Is there a road in this image?",unsure
+rr0059_q4,rr0059,"Is there farmland in this image?",yes
+rr0140_q0,rr0140,"Is there buildings in this image?",unsure
+rr0140_q1,rr0140,"Is there trees in this image?",yes
+rr0140_q2,rr0140,"Is there water in this image?",no
+rr0140_q3,rr0140,"Is there a road in this image?",yes
+rr0140_q4,rr0140,"Is there farmland in this image?",yes
+rr0025_q0,rr0025,"Is there buildings in this image?",no
+rr0025_q1,rr0025,"Is there trees in this image?",yes
+rr0025_q2,rr0025,"Is there water in this image?",no
+rr0025_q3,rr0025,"Is there a road in this image?",no
+rr0025_q4,rr0025,"Is there farmland in this image?",yes
+rr0048_q0,rr0048,"Is there buildings in this image?",yes
+rr0048_q1,rr0048,"Is there trees in this image?",yes
+rr0048_q2,rr0048,"Is there water in this image?",no
+rr0048_q3,rr0048,"Is there a road in this image?",unsure
+rr0048_q4,rr0048,"Is there farmland in this image?",yes
+rr0144_q0,rr0144,"Is there buildings in this image?",no
+rr0144_q1,rr0144,"Is there trees in this image?",yes
+rr0144_q2,rr0144,"Is there water in this image?",no
+rr0144_q3,rr0144,"Is there a road in this image?",no
+rr0144_q4,rr0144,"Is there farmland in this image?",yes
+rr0019_q0,rr0019,"Is there buildings in this image?",yes
+rr0019_q1,rr0019,"Is there trees in this image?",yes
+rr0019_q2,rr0019,"Is there water in this image?",no
+rr0019_q3,rr0019,"Is there a road in this image?",yes
+rr0019_q4,rr0019,"Is there farmland in this image?",yes
+rr0116_q0,rr0116,"Is there buildings in this image?",yes
+rr0116_q1,rr0116,"Is there trees in this image?",yes
+rr0116_q2,rr0116,"Is there water in this image?",no
+rr0116_q3,rr0116,"Is there a road in this image?",yes
+rr0116_q4,rr0116,"Is there farmland in this image?",no
+rr0058_q0,rr0058,"Is there buildings in this image?",yes
+rr0058_q1,rr0058,"Is there trees in this image?",yes
+rr0058_q2,rr0058,"Is there water in this image?",no
+rr0058_q3,rr0058,"Is there a road in this image?",yes
+rr0058_q4,rr0058,"Is there farmland in this image?",yes
+rr0024_q0,rr0024,"Is there buildings in this image?",yes
+rr0024_q1,rr0024,"Is there trees in this image?",yes
+rr0024_q2,rr0024,"Is there water in this image?",no
+rr0024_q3,rr0024,"Is there a road in this image?",yes
+rr0024_q4,rr0024,"Is there farmland in this image?",no
+rr0037_q0,rr0037,"Is there buildings in this image?",unsure
+rr0037_q1,rr0037,"Is there trees in this image?",no
+rr0037_q2,rr0037,"Is there water in this image?",no
+rr0037_q3,rr0037,"Is there a road in this image?",yes
+rr0037_q4,rr0037,"Is there farmland in this image?",no
+rr0044_q0,rr0044,"Is there buildings in this image?",unsure
+rr0044_q1,rr0044,"Is there trees in this image?",no
+rr0044_q2,rr0044,"Is there water in this image?",no
+rr0044_q3,rr0044,"Is there a road in this image?",unsure
+rr0044_q4,rr0044,"Is there farmland in this image?",unsure
+rr0084_q0,rr0084,"Is there buildings in this image?",yes
+rr0084_q1,rr0084,"Is there trees in this image?",yes
+rr0084_q2,rr0084,"Is there water in this image?",no
+rr0084_q3,rr0084,"Is there a road in this image?",unsure
+rr0084_q4,rr0084,"Is there farmland in this image?",yes
+rr0131_q0,rr0131,"Is there buildings in this image?",no
+rr0131_q1,rr0131,"Is there trees in this image?",yes
+rr0131_q2,rr0131,"Is there water in this image?",unsure
+rr0131_q3,rr0131,"Is there a road in this image?",unsure
+rr0131_q4,rr0131,"Is there farmland in this image?",yes
+rr0071_q0,rr0071,"Is there buildings in this image?",unsure
+rr0071_q1,rr0071,"Is there trees in this image?",yes
+rr0071_q2,rr0071,"Is there water in this image?",unsure
+rr0071_q3,rr0071,"Is there a road in this image?",unsure
+rr0071_q4,rr0071,"Is there farmland in this image?",no
+rr0130_q0,rr0130,"Is there buildings in this image?",no
+rr0130_q1,rr0130,"Is there trees in this image?",no
+rr0130_q2,rr0130,"Is there water in this image?",no
+rr0130_q3,rr0130,"Is there a road in this image?",unsure
+rr0130_q4,rr0130,"Is there farmland in this image?",no
+rr0097_q0,rr0097,"Is there buildings in this image?",no
+rr0097_q1,rr0097,"Is there trees in this image?",yes
+rr0097_q2,rr0097,"Is there water in this image?",no
+rr0097_q3,rr0097,"Is there a road in this image?",unsure
+rr0097_q4,rr0097,"Is there farmland in this image?",no
+rr0100_q0,rr0100,"Is there buildings in this image?",no
+rr0100_q1,rr0100,"Is there trees in this image?",no
+rr0100_q2,rr0100,"Is there water in this image?",unsure
+rr0100_q3,rr0100,"Is there a road in this image?",unsure
+rr0100_q4,rr0100,"Is there farmland in this image?",no
+rr0026_q0,rr0026,"Is there buildings in this image?",yes
+rr0026_q1,rr0026,"Is there trees in this image?",yes
+rr0026_q2,rr0026,"Is there water in this image?",unsure
+rr0026_q3,rr0026,"Is there a road in this image?",yes
+rr0026_q4,rr0026,"Is there farmland in this image?",no
+rr0103_q0,rr0103,"Is there buildings in this image?",unsure
+rr0103_q1,rr0103,"Is there trees in this image?",unsure
+rr0103_q2,rr0103,"Is there water in this image?",unsure
+rr0103_q3,rr0103,"Is there a road in this image?",unsure
+rr0103_q4,rr0103,"Is there farmland in this image?",unsure
+rr0085_q0,rr0085,"Is there buildings in this image?",yes
+rr0085_q1,rr0085,"Is there trees in this image?",yes
+rr0085_q2,rr0085,"Is there water in this image?",unsure
+rr0085_q3,rr0085,"Is there a road in this image?",unsure
+rr0085_q4,rr0085,"Is there farmland in this image?",unsure
+rr0056_q0,rr0056,"Is there buildings in this image?",yes
+rr0056_q1,rr0056,"Is there trees in this image?",yes
+rr0056_q2,rr0056,"Is there water in this image?",no
+rr0056_q3,rr0056,"Is there a road in this image?",unsure
+rr0056_q4,rr0056,"Is there farmland in this image?",yes
+rr0069_q0,rr0069,"Is there buildings in this image?",unsure
+rr0069_q1,rr0069,"Is there trees in this image?",yes
+rr0069_q2,rr0069,"Is there water in this image?",unsure
+rr0069_q3,rr0069,"Is there a road in this image?",unsure
+rr0069_q4,rr0069,"Is there farmland in this image?",yes
+rr0120_q0,rr0120,"Is there buildings in this image?",yes
+rr0120_q1,rr0120,"Is there trees in this image?",yes
+rr0120_q2,rr0120,"Is there water in this image?",unsure
+rr0120_q3,rr0120,"Is there a road in this image?",yes
+rr0120_q4,rr0120,"Is there farmland in this image?",yes
+rr0128_q0,rr0128,"Is there buildings in this image?",yes
+rr0128_q1,rr0128,"Is there trees in this image?",yes
+rr0128_q2,rr0128,"Is there water in this image?",unsure
+rr0128_q3,rr0128,"Is there a road in this image?",yes
+rr0128_q4,rr0128,"Is there farmland in this image?",unsure
+rr0054_q0,rr0054,"Is there buildings in this image?",no
+rr0054_q1,rr0054,"Is there trees in this image?",yes
+rr0054_q2,rr0054,"Is there water in this image?",unsure
+rr0054_q3,rr0054,"Is there a road in this image?",no
+rr0054_q4,rr0054,"Is there farmland in this image?",yes
+rr0022_q0,rr0022,"Is there buildings in this image?",yes
+rr0022_q1,rr0022,"Is there trees in this image?",yes
+rr0022_q2,rr0022,"Is there water in this image?",no
+rr0022_q3,rr0022,"Is there a road in this image?",yes
+rr0022_q4,rr0022,"Is there farmland in this image?",no
+rr0090_q0,rr0090,"Is there buildings in this image?",no
+rr0090_q1,rr0090,"Is there trees in this image?",yes
+rr0090_q2,rr0090,"Is there water in this image?",unsure
+rr0090_q3,rr0090,"Is there a road in this image?",unsure
+rr0090_q4,rr0090,"Is there farmland in this image?",unsure
+rr0002_q0,rr0002,"Is there buildings in this image?",yes
+rr0002_q1,rr0002,"Is there trees in this image?",yes
+rr0002_q2,rr0002,"Is there water in this image?",no
+rr0002_q3,rr0002,"Is there a road in this image?",yes
+rr0002_q4,rr0002,"Is there farmland in this image?",unsure
+rr0088_q0,rr0088,"Is there buildings in this image?",no
+rr0088_q1,rr0088,"Is there trees in this image?",yes
+rr0088_q2,rr0088,"Is there water in this image?",no
+rr0088_q3,rr0088,"Is there a road in this image?",no
+rr0088_q4,rr0088,"Is there farmland in this image?",unsure
+rr0133_q0,rr0133,"Is there buildings in this image?",no
+rr0133_q1,rr0133,"Is there trees in this image?",yes
+rr0133_q2,rr0133,"Is there water in this image?",no
+rr0133_q3,rr0133,"Is there a road in this image?",no
+rr0133_q4,rr0133,"Is there farmland in this image?",yes
+rr0098_q0,rr0098,"Is there buildings in this image?",yes
+rr0098_q1,rr0098,"Is there trees in this image?",yes
+rr0098_q2,rr0098,"Is there water in this image?",no
+rr0098_q3,rr0098,"Is there a road in this image?",no
+rr0098_q4,rr0098,"Is there farmland in this image?",unsure
+rr0089_q0,rr0089,"Is there buildings in this image?",unsure
+rr0089_q1,rr0089,"Is there trees in this image?",yes
+rr0089_q2,rr0089,"Is there water in this image?",no
+rr0089_q3,rr0089,"Is there a road in this image?",yes
+rr0089_q4,rr0089,"Is there farmland in this image?",unsure
+rr0031_q0,rr0031,"Is there buildings in this image?",yes
+rr0031_q1,rr0031,"Is there trees in this image?",yes
+rr0031_q2,rr0031,"Is there water in this image?",unsure
+rr0031_q3,rr0031,"Is there a road in this image?",yes
+rr0031_q4,rr0031,"Is there farmland in this image?",unsure
+rr0072_q0,rr0072,"Is there buildings in this image?",no
+rr0072_q1,rr0072,"Is there trees in this image?",yes
+rr0072_q2,rr0072,"Is there water in this image?",no
+rr0072_q3,rr0072,"Is there a road in this image?",no
+rr0072_q4,rr0072,"Is there farmland in this image?",yes
+rr0127_q0,rr0127,"Is there buildings in this image?",no
+rr0127_q1,rr0127,"Is there trees in this image?",no
+rr0127_q2,rr0127,"Is there water in this image?",unsure
+rr0127_q3,rr0127,"Is there a road in this image?",unsure
+rr0127_q4,rr0127,"Is there farmland in this image?",yes
+rr0137_q0,rr0137,"Is there buildings in this image?",no
+rr0137_q1,rr0137,"Is there trees in this image?",yes
+rr0137_q2,rr0137,"Is there water in this image?",unsure
+rr0137_q3,rr0137,"Is there a road in this image?",unsure
+rr0137_q4,rr0137,"Is there farmland in this image?",yes
+rr0135_q0,rr0135,"Is there buildings in this image?",no
+rr0135_q1,rr0135,"Is there trees in this image?",no
+rr0135_q2,rr0135,"Is there water in this image?",unsure
+rr0135_q3,rr0135,"Is there a road in this image?",unsure
+rr0135_q4,rr0135,"Is there farmland in this image?",yes
+rr0032_q0,rr0032,"Is there buildings in this image?",yes
+rr0032_q1,rr0032,"Is there trees in this image?",yes
+rr0032_q2,rr0032,"Is there water in this image?",unsure
+rr0032_q3,rr0032,"Is there a road in this image?",yes
+rr0032_q4,rr0032,"Is there farmland in this image?",no
+rr0080_q0,rr0080,"Is there buildings in this image?",yes
+rr0080_q1,rr0080,"Is there trees in this image?",yes
+rr0080_q2,rr0080,"Is there water in this image?",no
+rr0080_q3,rr0080,"Is there a road in this image?",yes
+rr0080_q4,rr0080,"Is there farmland in this image?",yes
+rr0139_q0,rr0139,"Is there buildings in this image?",unsure
+rr0139_q1,rr0139,"Is there trees in this image?",yes
+rr0139_q2,rr0139,"Is there water in this image?",unsure
+rr0139_q3,rr0139,"Is there a road in this image?",unsure
+rr0139_q4,rr0139,"Is there farmland in this image?",unsure
+rr0030_q0,rr0030,"Is there buildings in this image?",unsure
+rr0030_q1,rr0030,"Is there trees in this image?",yes
+rr0030_q2,rr0030,"Is there water in this image?",unsure
+rr0030_q3,rr0030,"Is there a road in this image?",unsure
+rr0030_q4,rr0030,"Is there farmland in this image?",unsure
+rr0121_q0,rr0121,"Is there buildings in this image?",yes
+rr0121_q1,rr0121,"Is there trees in this image?",yes
+rr0121_q2,rr0121,"Is there water in this image?",unsure
+rr0121_q3,rr0121,"Is there a road in this image?",yes
+rr0121_q4,rr0121,"Is there farmland in this image?",unsure
+rr0008_q0,rr0008,"Is there buildings in this image?",unsure
+rr0008_q1,rr0008,"Is there trees in this image?",yes
+rr0008_q2,rr0008,"Is there water in this image?",unsure
+rr0008_q3,rr0008,"Is there a road in this image?",unsure
+rr0008_q4,rr0008,"Is there farmland in this image?",unsure
+rr0113_q0,rr0113,"Is there buildings in this image?",unsure
+rr0113_q1,rr0113,"Is there trees in this image?",unsure
+rr0113_q2,rr0113,"Is there water in this image?",unsure
+rr0113_q3,rr0113,"Is there a road in this image?",unsure
+rr0113_q4,rr0113,"Is there farmland in this image?",unsure
+rr0013_q0,rr0013,"Is there buildings in this image?",no
+rr0013_q1,rr0013,"Is there trees in this image?",yes
+rr0013_q2,rr0013,"Is there water in this image?",unsure
+rr0013_q3,rr0013,"Is there a road in this image?",unsure
+rr0013_q4,rr0013,"Is there farmland in this image?",unsure
+rr0016_q0,rr0016,"Is there buildings in this image?",yes
+rr0016_q1,rr0016,"Is there trees in this image?",yes
+rr0016_q2,rr0016,"Is there water in this image?",no
+rr0016_q3,rr0016,"Is there a road in this image?",yes
+rr0016_q4,rr0016,"Is there farmland in this image?",unsure
+rr0105_q0,rr0105,"Is there buildings in this image?",yes
+rr0105_q1,rr0105,"Is there trees in this image?",yes
+rr0105_q2,rr0105,"Is there water in this image?",unsure
+rr0105_q3,rr0105,"Is there a road in this image?",yes
+rr0105_q4,rr0105,"Is there farmland in this image?",unsure
+rr0066_q0,rr0066,"Is there buildings in this image?",no
+rr0066_q1,rr0066,"Is there trees in this image?",yes
+rr0066_q2,rr0066,"Is there water in this image?",unsure
+rr0066_q3,rr0066,"Is there a road in this image?",unsure
+rr0066_q4,rr0066,"Is there farmland in this image?",yes
+rr0125_q0,rr0125,"Is there buildings in this image?",no
+rr0125_q1,rr0125,"Is there trees in this image?",no
+rr0125_q2,rr0125,"Is there water in this image?",unsure
+rr0125_q3,rr0125,"Is there a road in this image?",unsure
+rr0125_q4,rr0125,"Is there farmland in this image?",unsure
+rr0018_q0,rr0018,"Is there buildings in this image?",yes
+rr0018_q1,rr0018,"Is there trees in this image?",yes
+rr0018_q2,rr0018,"Is there water in this image?",no
+rr0018_q3,rr0018,"Is there a road in this image?",yes
+rr0018_q4,rr0018,"Is there farmland in this image?",unsure
