@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+data/
+recomputed/
+*/images/
+src/log_*.txt

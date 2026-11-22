@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this code or the stored results, please cite the paper below."
+title: "Detect, Then Enhance: Code and Per-Run Results"
+repository-code: "https://github.com/Electromind18/detect-then-enhance"
+license: MIT
+authors:
+  - family-names: Tauqeer
+    given-names: Syed Muhammad Hamza
+  - family-names: Talha
+    given-names: Muhammad
+  - family-names: Ghafoor
+    given-names: Huma
+  - family-names: Nam
+    given-names: Seung Yeob
+preferred-citation:
+  type: article
+  title: "Detect, Then Enhance: Lightweight Degradation-Aware Enhancement Routing for Frozen Remote-Sensing Vision-Language Models"
+  authors:
+    - family-names: Tauqeer
+      given-names: Syed Muhammad Hamza
+    - family-names: Talha
+      given-names: Muhammad
+    - family-names: Ghafoor
+      given-names: Huma
+    - family-names: Nam
+      given-names: Seung Yeob
+  journal: "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing"
+  year: 2026
+  notes: "Submitted"

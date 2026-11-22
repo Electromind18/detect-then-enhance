@@ -1,0 +1,23 @@
+{
+  "sklearn": "1.9.1",
+  "numpy": "2.5.3",
+  "pandas": "3.0.5",
+  "python": "3.13.18",
+  "detector": "HistGradientBoostingClassifier(max_iter=200, random_state=0)",
+  "training_rows": 6300,
+  "fewshot_rows": 60,
+  "fewshot_repeat": 21,
+  "features": [
+    "in_lum_mean",
+    "in_lum_std",
+    "in_rms_contrast",
+    "in_entropy",
+    "in_haze_dark",
+    "in_sat_mean",
+    "in_sat_std",
+    "in_lap_var",
+    "in_noise_mad",
+    "in_frac_dark",
+    "in_frac_bright"
+  ]
+}

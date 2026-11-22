@@ -1,0 +1,183 @@
+{
+ "detector_acc": 0.9466666666666667,
+ "blank_acc": 0.4819047619047619,
+ "policy_acc": {
+  "Never": 79.63492063492063,
+  "CLAHE": 80.0952380952381,
+  "Gamma": 82.53968253968253,
+  "Dehaze": 80.6031746031746,
+  "Gate": 82.44444444444444,
+  "Router": 83.31746031746032,
+  "Cond. oracle": 83.39682539682539
+ },
+ "severity": {
+  "haze|Never": {
+   "1": 86.1,
+   "2": 80.3,
+   "3": 76.0
+  },
+  "haze|Gamma": {
+   "1": 87.2,
+   "2": 81.3,
+   "3": 82.1
+  },
+  "haze|Dehaze": {
+   "1": 87.4,
+   "2": 84.4,
+   "3": 86.6
+  },
+  "haze|Router": {
+   "1": 86.9,
+   "2": 84.4,
+   "3": 86.6
+  },
+  "lowlight|Never": {
+   "1": 81.5,
+   "2": 73.0,
+   "3": 57.4
+  },
+  "lowlight|Gamma": {
+   "1": 83.8,
+   "2": 80.0,
+   "3": 66.5
+  },
+  "lowlight|Dehaze": {
+   "1": 80.1,
+   "2": 72.7,
+   "3": 56.9
+  },
+  "lowlight|Router": {
+   "1": 83.7,
+   "2": 80.0,
+   "3": 66.5
+  }
+ },
+ "hurt_qtype": {
+  "clahe": {
+   "presence_object": 2.4,
+   "presence_surface": 3.5,
+   "scene_mcq": 5.2
+  },
+  "gamma": {
+   "presence_object": 1.6,
+   "presence_surface": 3.6,
+   "scene_mcq": 4.9
+  },
+  "dehaze": {
+   "presence_object": 1.6,
+   "presence_surface": 3.1,
+   "scene_mcq": 3.4
+  }
+ },
+ "help_qtype": {
+  "clahe": {
+   "presence_object": 4.5,
+   "presence_surface": 6.4,
+   "scene_mcq": 6.8
+  },
+  "dehaze": {
+   "presence_object": 3.7,
+   "presence_surface": 6.8,
+   "scene_mcq": 4.5
+  },
+  "gamma": {
+   "presence_object": 6.1,
+   "presence_surface": 9.4,
+   "scene_mcq": 7.5
+  }
+ },
+ "router_vs_Gamma": [
+  0.7777777777777778,
+  0.33333333333333337,
+  1.253968253968254
+ ],
+ "router_vs_Dehaze": [
+  2.7142857142857144,
+  2.078968253968254,
+  3.380952380952381
+ ],
+ "router_vs_Gate": [
+  0.873015873015873,
+  0.38095238095238093,
+  1.380952380952381
+ ],
+ "router_vs_Never": [
+  3.6825396825396823,
+  2.8884920634920634,
+  4.4603174603174605
+ ],
+ "by_cond": {
+  "Never": {
+   "clean": 86.8,
+   "haze": 80.8,
+   "lowlight": 71.3
+  },
+  "CLAHE": {
+   "clean": 83.7,
+   "haze": 81.6,
+   "lowlight": 75.0
+  },
+  "Gamma": {
+   "clean": 86.9,
+   "haze": 83.5,
+   "lowlight": 77.2
+  },
+  "Dehaze": {
+   "clean": 85.1,
+   "haze": 86.1,
+   "lowlight": 70.6
+  },
+  "Gate": {
+   "clean": 86.9,
+   "haze": 85.2,
+   "lowlight": 75.3
+  },
+  "Router": {
+   "clean": 86.8,
+   "haze": 86.0,
+   "lowlight": 77.2
+  },
+  "Cond. oracle": {
+   "clean": 86.9,
+   "haze": 86.1,
+   "lowlight": 77.2
+  }
+ },
+ "by_qtype": {
+  "Never": {
+   "presence_object": 85.3,
+   "presence_surface": 73.9,
+   "scene_mcq": 79.7
+  },
+  "CLAHE": {
+   "presence_object": 86.5,
+   "presence_surface": 74.7,
+   "scene_mcq": 79.1
+  },
+  "Gamma": {
+   "presence_object": 88.6,
+   "presence_surface": 77.8,
+   "scene_mcq": 81.3
+  },
+  "Dehaze": {
+   "presence_object": 86.3,
+   "presence_surface": 75.9,
+   "scene_mcq": 79.6
+  },
+  "Gate": {
+   "presence_object": 87.9,
+   "presence_surface": 77.6,
+   "scene_mcq": 81.9
+  },
+  "Router": {
+   "presence_object": 88.9,
+   "presence_surface": 79.1,
+   "scene_mcq": 82.0
+  },
+  "Cond. oracle": {
+   "presence_object": 88.9,
+   "presence_surface": 79.2,
+   "scene_mcq": 82.0
+  }
+ }
+}

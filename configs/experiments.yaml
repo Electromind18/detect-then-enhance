@@ -1,0 +1,66 @@
+# All settings used in the paper. The scripts in ../scripts pass these values on the command line;
+# this file documents them in one place. Values are copied from the code defaults and the exact commands run.
+
+vlms:
+  - id: Qwen/Qwen2.5-VL-3B-Instruct
+  - id: Qwen/Qwen2-VL-2B-Instruct
+inference:                       # src/run_vlm.py
+  dtype: bfloat16                # --dtype auto resolved to bfloat16 on T4 (recorded in run_info_*.json)
+  attention: sdpa
+  batch_size: 16
+  max_pixels: 262144             # 512 x 512
+  min_pixels: 50176              # 64 x 28 x 28
+  padding_side: left
+  generation: none               # one forward pass; answer read from first-token logits
+  yes_tokens: [Yes, yes]
+  no_tokens: [No, no]
+  mcq_tokens: [A, B, C, D]
+  prompt_yesno_suffix: "Answer with Yes or No."
+  prompt_mcq_suffix: "Answer with only the letter of the correct option."
+  sharding: 2 shards, one per GPU (CUDA_VISIBLE_DEVICES=0/1)
+
+seeds:
+  question_sampling: 0           # make_versions.py --seed 0 (random.Random)
+  degradation: "numpy default_rng(crc32('{seed}|{image_key}|{condition}'))"   # every image version is reproducible
+  dataset_preparation: 0         # prepare_*.py --seed 0
+  gbdt: 0                        # HistGradientBoosting random_state
+  bootstrap: 0                   # numpy default_rng(0), 2000 resamples
+  cross_validation: GroupKFold(n_splits=5) by image (deterministic)
+
+degradations:                    # src/common.py
+  haze:                          # I = J t + A (1 - t)
+    airlight: [0.80, 0.95]
+    transmission_ramp_slope: [-0.1, 0.1]
+    transmission_clip: [0.15, 0.95]
+    t0: {1: [0.60, 0.75], 2: [0.40, 0.55], 3: [0.20, 0.35], 4: [0.08, 0.18]}
+    level4_airlight_tint: 0.08   # per-channel shift
+  lowlight:                      # I = s J^gamma + N(0, sigma^2)
+    gamma: {1: [1.4, 1.8], 2: [1.8, 2.4], 3: [2.4, 3.0], 4: [2.6, 3.4]}
+    gain:  {1: [0.55, 0.70], 2: [0.35, 0.50], 3: [0.20, 0.30], 4: [0.12, 0.22]}
+    sigma: {1: 0.008, 2: 0.012, 3: 0.018, 4: 0.030}
+  severity_sampling: uniform over 1-3 per image and condition (--graded); level 4 only with --fixed_level 4
+
+enhancers:                       # src/common.py
+  clahe: {colour_space: CIELAB L, clip_limit: 2.0, tiles: [8, 8]}
+  gamma: {target_mean: 0.5, exponent_clip: [0.3, 3.0]}
+  dehaze_dcp: {patch: 15, omega: 0.95, t_min: 0.1, airlight: per-channel max over the brightest 0.1% dark-channel pixels,
+               transmission_working_size: 256 (longest side; upsampled bilinearly), guided_filter: {guide: grey image, box_window: 30, eps: 0.001}}
+
+router:                          # src/transfer_eval.py, src/export_router.py
+  statistics: [lum_mean, lum_std, rms_contrast, entropy_64bin, haze_dark, sat_mean, sat_std, lap_var, noise_mad, frac_dark, frac_bright]
+  detector: HistGradientBoostingClassifier(max_iter=200, random_state=0)
+  threshold_detector: grid search on lum_mean (2-60% quantiles) and haze_dark (30-98% quantiles), 40 x 40
+  lookup_table: argmax accuracy per condition on the training questions
+  fewshot_rrshid: k pairs per density from the RRSHID train split; repeated so they carry ~1/6 of the detector training weight
+
+studies:
+  main:    {dataset: UC Merced multi-label, images: 700, questions_per_image: 3, severities: [1, 2, 3]}
+  aid:     {scene_images_per_class: 20, multilabel_images: 400, resize: 512, severities: [1, 2, 3]}
+  unseen:  {dataset: UC Merced multi-label, images: 200, skip_first: 700, severity: 4}
+  rrshid:  {split: test, pairs_per_density: 50, resize: 512, questions_per_image: 5, reference: "answer on haze-free twin, kept if P(yes) > 0.8 or < 0.2"}
+  codrone: {split: test, night: 150, day: 100, longest_side: 768, questions_per_image: 4, day_night_from: file name prefix, excluded_label: ignored}
+
+evaluation:
+  main_study: 5-fold CV grouped by image; paired bootstrap over (question, condition) units
+  transfer_and_router_vs_fixed: paired bootstrap over images
+  blank_control: uniform grey image (128) of the same size

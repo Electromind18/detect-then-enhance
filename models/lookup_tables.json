@@ -1,0 +1,56 @@
+{
+  "Qwen2.5-VL-3B-Instruct": {
+    "table": {
+      "clean": "gamma",
+      "haze": "dehaze",
+      "lowlight": "gamma"
+    },
+    "accuracy": {
+      "clean": {
+        "none": 0.8676,
+        "clahe": 0.8371,
+        "gamma": 0.8686,
+        "dehaze": 0.8514
+      },
+      "haze": {
+        "none": 0.8081,
+        "clahe": 0.8162,
+        "gamma": 0.8352,
+        "dehaze": 0.861
+      },
+      "lowlight": {
+        "none": 0.7133,
+        "clahe": 0.7495,
+        "gamma": 0.7724,
+        "dehaze": 0.7057
+      }
+    }
+  },
+  "Qwen2-VL-2B-Instruct": {
+    "table": {
+      "clean": "none",
+      "haze": "dehaze",
+      "lowlight": "gamma"
+    },
+    "accuracy": {
+      "clean": {
+        "none": 0.8857,
+        "clahe": 0.8581,
+        "gamma": 0.8752,
+        "dehaze": 0.8714
+      },
+      "haze": {
+        "none": 0.8524,
+        "clahe": 0.8433,
+        "gamma": 0.8681,
+        "dehaze": 0.8752
+      },
+      "lowlight": {
+        "none": 0.8181,
+        "clahe": 0.8048,
+        "gamma": 0.8252,
+        "dehaze": 0.8176
+      }
+    }
+  }
+}
