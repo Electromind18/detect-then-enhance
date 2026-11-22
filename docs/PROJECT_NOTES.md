@@ -1,6 +1,6 @@
 # Project notes (full context for future revisions)
 
-This file lets anyone, including an AI assistant with no memory of earlier work, continue the project from this
+This file lets authors continue the project from this
 repository alone: revise the paper, answer reviewers, or rerun experiments. Read it together with
 `docs/REPRODUCIBILITY.md` and `configs/experiments.yaml`. The LaTeX manuscript is kept by the authors (Overleaf),
 not in this repository, so the two cannot drift apart; the paper's numbers are reproduced by `scripts/06`.
