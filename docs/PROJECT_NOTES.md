@@ -2,7 +2,8 @@
 
 This file lets anyone, including an AI assistant with no memory of earlier work, continue the project from this
 repository alone: revise the paper, answer reviewers, or rerun experiments. Read it together with
-`docs/REPRODUCIBILITY.md`, `configs/experiments.yaml`, and `paper/main.tex`.
+`docs/REPRODUCIBILITY.md` and `configs/experiments.yaml`. The LaTeX manuscript is kept by the authors (Overleaf),
+not in this repository, so the two cannot drift apart; the paper's numbers are reproduced by `scripts/06`.
 
 ## How to resume with an AI assistant
 Upload this repository (or point the assistant to it) and say: "Read docs/PROJECT_NOTES.md first. This is my
@@ -11,7 +12,7 @@ JSTARS paper. The task is: <reviewer comments / revision / new experiment>."
 ## Writing rules for this paper (from the authors)
 - Deliver the manuscript as one Overleaf-style folder: main.tex, IEEEtran.cls, references.bib, figures.
 - Authors in this order: Syed Muhammad Hamza Tauqeer (first), Muhammad Talha, Huma Ghafoor*, Seung Yeob Nam*
-  (*corresponding). Affiliations and biographies as in paper/main.tex.
+  (*corresponding). Affiliations and biographies as in the accepted FireNofire paper.
 - Every citation must be a real, findable paper, and every claim attributed to it must be checkable in that paper.
 - Plain, measured writing in the style of the authors' earlier accepted IEEE paper ("Comparative Study of Deep Neural
   Networks for Real-Time Fire Detection Using Mixed-Precision Inference"); no claims beyond the data.
@@ -122,7 +123,7 @@ JSTARS paper. The task is: <reviewer comments / revision / new experiment>."
 - Code repo: detect-then-enhance-repo.zip; cited as https://github.com/Electromind18/detect-then-enhance.
 
 ### 13. Status at submission (Nov 2026)
-- Paper source: `paper/` (biography photos omitted in this public copy). All experiments finished; Table VI holds the
+- All experiments finished; Table VI holds the
   real-data results and Fig. 5 the real-image examples (`src/make_fig_real.py`).
 - Honest weak points a reviewer may raise: modest methodological novelty (degradation-aware selection exists; the
   contribution is the measured evidence on frozen RS VLMs and the transfer tests); small 2-3B VLMs; RRSHID metric is
@@ -130,3 +131,17 @@ JSTARS paper. The task is: <reviewer comments / revision / new experiment>."
   night images (threshold detector works); CODrone runs used Transformers 5.20.
 - If a reviewer asks for a larger VLM: `run_vlm.py --model <hf id>` works for Qwen2/2.5-VL-family models; 7B needs
   4-bit loading on a T4 (not implemented yet).
+
+### 14. Pre-submission review fixes (Nov 22)
+- Every confidence interval now resamples whole images (main table recomputed with `src/main_table_ci.py`).
+- Cross-VLM table under the same CV: 83.3% (Qwen2.5 with Qwen2 table, own 83.3%) and 86.0% (Qwen2 with Qwen2.5 table,
+  own 86.2%); the paper says "loss of at most 0.2 points", not "without loss".
+- CV threshold router: 83.4% / 86.2% (GBDT router 83.3% / 86.2%).
+- Evidence-drift section uses association, not causal, language.
+- Input sizes after the Qwen processor (multiples of 28, area <= 512x512): UC Merced 252x252, AID/RRSHID 504x504,
+  CODrone 672x364. Reported run times are batched throughput (16 per batch), not single-image latency.
+- Added a limitations paragraph: RRSHID references are model answers, not human labels; T4/one CPU only; no memory,
+  energy, or edge-device measurements.
+- Lessons from the authors' earlier JSTARS reviews (FireNofire paper): reviewers asked for a public repo with configs,
+  seeds and versions; 2024+ literature; visual samples; cross-dataset tests; hardware dependency and edge devices;
+  explanations of *why* results differ; concise writing. Expect similar questions here.
